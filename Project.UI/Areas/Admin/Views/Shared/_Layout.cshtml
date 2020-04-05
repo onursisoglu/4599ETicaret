@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("4599 Yönetim Paneli", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/Admin/Kategori/Index">Kategori Listele</a></li>
+                    <li><a href="#">Alt Kategori Listele</a></li>
+                    <li><a href="#">Urun Listele</a></li>
+                    <li><a href="#">Kullanici Listele</a></li>
+                    <li><a href="#">Sipariş Listele</a></li>
+                </ul>
+
+                <ul style="margin-top:12px" class="pull-right navbar-nav">
+                    <li><a href="#">Giriş Yap </a></li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+
+
+        @if(TempData["MessageData"] != null)
+        {
+
+            MessageTemplate mesajim = (MessageTemplate)TempData["MessageData"];
+            string cls = "";
+
+            if (mesajim.MessageTip == MessageType.Success)
+            {
+                cls = "alert-success";
+            }
+            else if (mesajim.MessageTip == MessageType.Warning)
+            {
+                cls = "alert-warning";
+            }
+            else
+            {
+                cls = "alert-danger";
+            }
+
+            <div class="row">
+                <div class="col-md-12 col-lg-12 ">
+                    <div class="alert @cls" id="PageAlertBox" data-duration ="@mesajim.Duration">
+                        @if (mesajim.Closeable)
+                        {
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        }
+
+                       @mesajim.Content
+                    </div>
+                </div>
+            </div>
+        }
+
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("scriptlerim",false)
+    <script>
+        if ($('#PageAlertBox').length > 0) {
+            
+            var time = $('#PageAlertBox').attr("data-duration");
+
+            if (time != null && time != undefined) {
+
+                time = time * 1000; // süreyi saniye cinsine cevirdik.
+
+                $('#PageAlertBox').fadeTo(time, 500).slideUp(500, function () {
+                    $('#PageAlertBox').alert('close');
+                });
+
+            }
+        }
+    </script>
+
+
+
+</body>
+</html>
