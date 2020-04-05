@@ -1,0 +1,9 @@
+﻿
+
+
+1 - Kullanıcı (Müşteri)
+2 - Ürün 
+3 - Kategori
+4- Alt Kategori
+5 - Sipariş
+6 - Sipariş Detay
