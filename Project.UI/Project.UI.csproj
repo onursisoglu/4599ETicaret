@@ -102,6 +102,49 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="img\add.jpg" />
+    <Content Include="img\cart\cart-1.jpg" />
+    <Content Include="img\f-box-1.jpg" />
+    <Content Include="img\f-box-2.jpg" />
+    <Content Include="img\f-box-3.jpg" />
+    <Content Include="img\icons\bag.png" />
+    <Content Include="img\icons\chat.png" />
+    <Content Include="img\icons\coin.png" />
+    <Content Include="img\icons\delivery.png" />
+    <Content Include="img\icons\f-delivery.png" />
+    <Content Include="img\icons\man.png" />
+    <Content Include="img\icons\sales.png" />
+    <Content Include="img\icons\search.png" />
+    <Content Include="img\icons\voucher.png" />
+    <Content Include="img\icons\zoom-plus.png" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\logos\logo-1.png" />
+    <Content Include="img\logos\logo-2.png" />
+    <Content Include="img\logos\logo-3.png" />
+    <Content Include="img\logos\logo-4.png" />
+    <Content Include="img\logos\logo-5.png" />
+    <Content Include="img\lookbok.jpg" />
+    <Content Include="img\mastercard.jpg" />
+    <Content Include="img\paypal.jpg" />
+    <Content Include="img\products\img-1.jpg" />
+    <Content Include="img\products\img-10.jpg" />
+    <Content Include="img\products\img-11.jpg" />
+    <Content Include="img\products\img-12.jpg" />
+    <Content Include="img\products\img-13.jpg" />
+    <Content Include="img\products\img-14.jpg" />
+    <Content Include="img\products\img-15.jpg" />
+    <Content Include="img\products\img-2.jpg" />
+    <Content Include="img\products\img-3.jpg" />
+    <Content Include="img\products\img-4.jpg" />
+    <Content Include="img\products\img-5.jpg" />
+    <Content Include="img\products\img-6.jpg" />
+    <Content Include="img\products\img-7.jpg" />
+    <Content Include="img\products\img-8.jpg" />
+    <Content Include="img\products\img-9.jpg" />
+    <Content Include="img\product\product-1.jpg" />
+    <Content Include="img\slider-1.jpg" />
+    <Content Include="img\slider-2.jpg" />
+    <Content Include="img\slider-3.jpg" />
     <Content Include="ProductPictures\07011652-857b4d.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -116,12 +159,30 @@
     <Content Include="Areas\Admin\Views\Urun\Duzenle.cshtml" />
     <Content Include="Areas\Admin\Views\Home\NoAuthorize.cshtml" />
     <Content Include="Areas\Admin\Views\Kullanici\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Kullanici\Duzenle.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="UIContent\bootstrap.min.css" />
+    <Content Include="UIContent\font-awesome.min.css" />
+    <Content Include="UIContent\magnific-popup.css" />
+    <Content Include="UIContent\nice-select.css" />
+    <Content Include="UIContent\owl.carousel.min.css" />
+    <Content Include="UIContent\slicknav.min.css" />
+    <Content Include="UIContent\style.css" />
+    <Content Include="UIScripts\bootstrap.min.js" />
+    <Content Include="UIScripts\jquery-3.3.1.min.js" />
+    <Content Include="UIScripts\jquery.magnific-popup.min.js" />
+    <Content Include="UIScripts\jquery.nice-select.min.js" />
+    <Content Include="UIScripts\jquery.slicknav.js" />
+    <Content Include="UIScripts\main.js" />
+    <Content Include="UIScripts\mixitup.min.js" />
+    <Content Include="UIScripts\owl.carousel.min.js" />
+    <Content Include="UserPictures\user.png" />
+    <Content Include="Views\index.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +220,8 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Views\Shared\_Sablonum.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -169,7 +232,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Project.Core\Project.Core.csproj">

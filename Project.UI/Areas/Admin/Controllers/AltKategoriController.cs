@@ -9,6 +9,7 @@ using Project.UI.Models;
 
 namespace Project.UI.Areas.Admin.Controllers
 {
+    [Authorize]
     public class AltKategoriController : BaseController
     {
         // GET: Admin/AltKategori

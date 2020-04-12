@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Duzenle";
+}
+@model AppUser
+<h2>Duzenle</h2>
+
+<form class="form-horizontal" enctype="multipart/form-data" action="/Admin/Kullanici/Duzenle" method="post">
+    <div class="form-group">
+        <label class="control-label col-sm-2">Ürün Adı :</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="Name" value="@Model.Name" placeholder="Ürün Adı giriniz">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-sm-2">Fiyat :</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="LastName" value="@Model.LastName" placeholder="Fiyat Giriniz">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Stok Miktarı :</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="UserName" value="@Model.UserName" placeholder="Stok Adedi Giriniz">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2">Ürün Fotoğrafı :</label>
+        <div class="col-sm-10">
+            <input type="file" class="form-control" name="Image">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">Alt Kategori :</label>
+        <div class="col-sm-10">
+            <select class="form-control" name="Rol">
+                @foreach (var item in Enum.GetValues(typeof(Role)))
+                {
+                    <option @if ((Role)item == Model.Rol) {@Html.Raw("selected");} value="@Convert.ToInt32(item)">@item</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">Aktif mi ? :</label>
+        <div class="col-sm-10">
+            <input type="checkbox" id="isactive" checked="@Model.IsActive" name="IsActive">
+        </div>
+    </div>
+    <input type="hidden" value="@Model.ID" name="ID" />
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success">Kaydet</button>
+        </div>
+    </div>
+</form>
+
+
+@section scriptlerim{
+    <script>
+        $('#isactive').change(function () {
+            var ischeck = $(this).prop('checked');
+
+            $(this).val(ischeck);
+        })
+
+         $(document).ready(function () {
+            var ischeck = $('#isactive').prop('checked');
+
+            $('#isactive').val(ischeck);
+        })
+    </script>
+}
+
