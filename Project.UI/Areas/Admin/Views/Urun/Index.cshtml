@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tüm ürünler</h2>
+
+@model List<Product>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Adı</th>
+                <th>Fiyatı</th>
+                <th>Stok Miktarı</th>
+                <th>Resim</th>
+                <th>Alt Kategori Adı</th>
+                <th>Ekleyen Kişi</th>
+                <th>Eklenme Tarihi</th>
+                <th>Aktif mi ?</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.Name</td>
+                <td>@item.UnitPrice</td>
+                <td>@item.UnitsInStock</td>
+                <td>
+                    <img height="100" width="100" src="@item.ImagePath" />
+                </td>
+                <td>@item.SubCategory.Name</td>
+                <td>@item.CreatedUserName</td>
+                <td>@item.CreatedDate</td>
+
+                <td>
+
+                    @if (item.IsActive)
+                    {
+                        <span style="color:green">Aktif</span>
+                    }
+                    else
+                    {
+                        <span style="color:red">Pasif</span>
+                    }
+                </td>
+                <td>
+                    <a href="/Admin/Urun/Duzenle/@item.ID" data-toggle="tooltip" title="Düzenle"><i class="glyphicon glyphicon-edit text-warning"></i></a>
+                    <a href="/Admin/Urun/Sil/@item.ID" data-toggle="tooltip" title="Sil"><i class="glyphicon glyphicon-trash text-danger"></i></a>
+                </td>
+            </tr>
+            }
+
+        </tbody>
+        
+    </table>
+
+

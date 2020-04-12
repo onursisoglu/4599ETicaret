@@ -102,11 +102,20 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="ProductPictures\07011652-857b4d.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\Kategori\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Kategori\Ekle.cshtml" />
     <Content Include="Areas\Admin\Views\Kategori\Duzenle.cshtml" />
+    <Content Include="Areas\Admin\Views\AltKategori\Ekle.cshtml" />
+    <Content Include="Areas\Admin\Views\AltKategori\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AltKategori\Duzenle.cshtml" />
+    <Content Include="Areas\Admin\Views\Urun\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Urun\Ekle.cshtml" />
+    <Content Include="Areas\Admin\Views\Urun\Duzenle.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\NoAuthorize.cshtml" />
+    <Content Include="Areas\Admin\Views\Kullanici\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -118,15 +127,20 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AltKategoriController.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\KategoriController.cs" />
+    <Compile Include="Areas\Admin\Controllers\KullaniciController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UrunController.cs" />
+    <Compile Include="Areas\Admin\Models\ProductViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\MessageTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\ImageUploader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -154,7 +168,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>

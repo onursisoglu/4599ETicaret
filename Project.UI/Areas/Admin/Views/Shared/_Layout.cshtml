@@ -17,19 +17,40 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("4599 Yönetim Paneli", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("4599 Yönetim Paneli", "Index", "Home", new { area = "Admin" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/Admin/Kategori/Index">Kategori Listele</a></li>
-                    <li><a href="#">Alt Kategori Listele</a></li>
-                    <li><a href="#">Urun Listele</a></li>
-                    <li><a href="#">Kullanici Listele</a></li>
-                    <li><a href="#">Sipariş Listele</a></li>
+                    <li><a href="/Admin/AltKategori/Index">Alt Kategori Listele</a></li>
+                    <li><a href="/Admin/Urun/Index">Urun Listele</a></li>
+                    <li><a href="/Admin/Kullanici/Index">Kullanici Listele</a></li>
+                    <li><a href="/Admin/Siparis/Index">Sipariş Listele</a></li>
                 </ul>
 
                 <ul style="margin-top:12px" class="pull-right navbar-nav">
-                    <li><a href="#">Giriş Yap </a></li>
+
+                    @{
+                        string ad = HttpContext.Current.User.Identity.Name;
+                    }
+
+                    @if (ad != null && ad != "")
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle"  data-toggle="dropdown" href="#" id="loginUserInfo">Hoşgeldin @ad</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/Admin/Kullanici/LogOut">Çıkış Yap <i class="glyphicon glyphicon-log-out"></i></a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li id="signinhref"><a href="#"  data-toggle="modal" data-target="#girisModal">Giriş Yap </a></li>
+                    }
+
+
                 </ul>
 
             </div>
@@ -39,7 +60,7 @@
     <div class="container body-content">
 
 
-        @if(TempData["MessageData"] != null)
+        @if (TempData["MessageData"] != null)
         {
 
             MessageTemplate mesajim = (MessageTemplate)TempData["MessageData"];
@@ -60,17 +81,50 @@
 
             <div class="row">
                 <div class="col-md-12 col-lg-12 ">
-                    <div class="alert @cls" id="PageAlertBox" data-duration ="@mesajim.Duration">
+                    <div class="alert @cls" id="PageAlertBox" data-duration="@mesajim.Duration">
                         @if (mesajim.Closeable)
                         {
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         }
 
-                       @mesajim.Content
+                        @mesajim.Content
                     </div>
                 </div>
             </div>
         }
+        <!--Giriş Modal-->
+
+        <div class="modal fade" id="girisModal" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Giriş Yapınız...</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Email veya Kullanıcı Adı :</label>
+                            <input id="userName" type="text" class="form-control" />
+                            <label class="fade text-danger" id="usernameInfo"></label>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Şifre :</label>
+                            <input id="pwd" type="password" class="form-control" />
+                            <label class="fade text-danger" id="pwdInfo"></label>
+                        </div>
+                        <div class="form-group">
+                            <button id="signinAdmin" type="button" class="btn btn-success btn-block">Giriş</button>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!--Giriş Modal-->
 
         @RenderBody()
         <hr />
@@ -81,10 +135,10 @@
 
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    @RenderSection("scriptlerim",false)
+    @RenderSection("scriptlerim", false)
     <script>
         if ($('#PageAlertBox').length > 0) {
-            
+
             var time = $('#PageAlertBox').attr("data-duration");
 
             if (time != null && time != undefined) {
@@ -97,7 +151,74 @@
 
             }
         }
+
+
+        $('#signinAdmin').on('click', function () {
+            debugger
+            var kullaniciAdi = $('#userName').val();
+            var sifre = $('#pwd').val();
+
+            if (kullaniciAdi == "") {
+                $('#usernameInfo').addClass('in');
+                $('#usernameInfo').html('Kullanıcı adı veya email adresinizi girmelisiniz.')
+            }
+
+            if (sifre == "") {
+                $('#pwdInfo').addClass('in');
+                $('#pwdInfo').html('Şifre boş geçilemez')
+            }
+
+            var url = "@ViewBag.ReturnUrl";
+           
+
+            if (kullaniciAdi != "" && sifre != "") {
+                $.ajax({
+
+                    url: '/Admin/Kullanici/Signin',
+                    type: 'post',
+                    data: { username: kullaniciAdi,password:sifre,ReturnUrl:url },
+                    success: function (sonuc) {
+                        
+                        if (sonuc.islemSonuc) {
+                            debugger
+                            
+                            $('#signinhref').html("");
+                            $('#signinhref').addClass("dropdown")
+                            $('#signinhref').append(`
+                            <a class="dropdown-toggle"  data-toggle="dropdown" href="#" id="loginUserInfo">Hoşgeldin `+ sonuc.username +`</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/Admin/Kullanici/LogOut">Çıkış Yap <i class="glyphicon glyphicon-log-out"></i></a>
+                                </li>
+                            </ul>`)
+                           
+                        
+                            if (url != "") {
+                                debugger
+                                window.location.href = url;
+                            }
+                            else {
+                                //$('#girisModal').modal('close')
+                            }
+                            
+                           
+
+                        }
+                    }
+
+
+                })
+            }
+
+
+
+        })
+
+
     </script>
+
+
+
 
 
 

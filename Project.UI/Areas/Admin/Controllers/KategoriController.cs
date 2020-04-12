@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Project.UI.Areas.Admin.Controllers
 {
+    [Authorize]
     public class KategoriController : BaseController
     {
         

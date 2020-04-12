@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace Project.Model.Entities
 {
+    public enum Role
+    {
+        Member=1,
+        Admin=2
+    }
    public class AppUser:CoreEntity
     {
         public string Name { get; set; }
@@ -18,6 +23,7 @@ namespace Project.Model.Entities
         public string PhoneNumber { get; set; }
         public string ImagePath { get; set; }
         public DateTime? BirthDate { get; set; }
+        public Role Rol { get; set; }
 
         public virtual List<Order> Orders { get; set; }
     }

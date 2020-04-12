@@ -13,5 +13,16 @@ namespace Project.UI.Areas.Admin.Controllers
         {
             return View();
         }
+
+
+        public ActionResult NoAuthorize(string ReturnUrl)
+        {
+            if(ReturnUrl!=null)
+            {
+                ViewBag.ReturnUrl = ReturnUrl;
+            }
+            
+            return View();
+        }
     }
 }
