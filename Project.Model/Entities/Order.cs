@@ -9,6 +9,10 @@ namespace Project.Model.Entities
 {
     public class Order : CoreEntity
     {
+        public Order()
+        {
+            OrderDetails = new List<OrderDetail>();
+        }
         public bool Confirmed { get; set; }
 
         public int AppUserID { get; set; }

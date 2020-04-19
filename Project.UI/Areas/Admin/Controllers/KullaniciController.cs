@@ -10,7 +10,7 @@ using System.Web.Security;
 
 namespace Project.UI.Areas.Admin.Controllers
 {
-    [Authorize]
+    
     public class KullaniciController : Controller
     {
         // GET: Admin/Kullanici

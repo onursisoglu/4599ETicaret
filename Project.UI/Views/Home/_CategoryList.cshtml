@@ -1,0 +1,26 @@
+﻿
+@model List<Category>
+
+
+
+    <nav class="main-menu mobile-menu" style="float:none!important">
+        <ul>
+            @foreach (var anaKategori in Model)
+            {
+                <li>
+                    <a href="./categories.html">@anaKategori.Name</a>
+                    <ul class="sub-menu">
+                        @foreach (var altKategori in anaKategori.SubCategories)
+                        {
+                            <li><a href="/Products/GetByCategory/@altKategori.ID">@altKategori.Name</a></li>
+                            <hr />
+                        }
+
+
+                    </ul>
+                </li>
+            }
+
+
+        </ul>
+    </nav>

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="zxx">
+<html lang="tr">
 
 <head>
     <meta charset="UTF-8">
@@ -13,11 +13,14 @@
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
           rel="stylesheet">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+
 
     <!-- Css Styles -->
-    
+
     <link href="~/UIContent/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/UIContent/ont-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/UIContent/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="~/UIContent/nice-select.css" type="text/css">
     <link rel="stylesheet" href="~/UIContent/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="~/UIContent/magnific-popup.css" type="text/css">
@@ -28,8 +31,8 @@
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
-            <div class="loader"></div>
-        </div>
+        <div class="loader"></div>
+    </div>
 
     <!-- Search model -->
     <div class="search-model">
@@ -46,36 +49,50 @@
         <div class="container-fluid">
             <div class="inner-header">
                 <div class="logo">
-                    <a href="./index.html"><img src="~/img/logo.png" alt=""></a>
+                    <a href="/"><img src="~/img/logo.png" alt=""></a>
                 </div>
-                <div class="header-right">
-                    <img src="~/img/icons/search.png" alt="" class="search-trigger">
-                    <img src="~/img/icons/man.png" alt="">
-                    <a href="#">
-                        <img src="~/img/icons/bag.png" alt="">
-                        <span>2</span>
-                    </a>
-                </div>
-                <div class="user-access">
-                    <a href="#">Register</a>
-                    <a href="#" class="in">Sign in</a>
-                </div>
-                <nav class="main-menu mobile-menu">
-                    <ul>
-                        <li><a class="active" href="./index.html">Home</a></li>
+                <div class="pull-right">
+                    @{
+                        string kullaniciAdi = HttpContext.Current.User.Identity.Name;
+                    }
+
+                    <img src="~/img/icons/search.png" alt="" class="search-trigger"> | &nbsp;
+                    <ul class="nav pull-right">
+                        @if (kullaniciAdi != null && kullaniciAdi != "")
+                        {
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">@kullaniciAdi</a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-item"><a href="/AppUser/LogOUt">Çıkış Yap</a></li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li><a href="/AppUser/Login"><i class="fas fa-sign-in-alt"></i></a></li>
+                        }
+                        &nbsp; | &nbsp;
                         <li>
-                            <a href="./categories.html">Shop</a>
-                            <ul class="sub-menu">
-                                <li><a href="product-page.html">Product Page</a></li>
-                                <li><a href="shopping-cart.html">Shopping Card</a></li>
-                                <li><a href="check-out.html">Check out</a></li>
-                            </ul>
+                        <a href="/Cart/Index">
+                            @{ 
+                                int? count = null;
+                                if(Session["sepetListesi"]!=null)
+                                {
+                                    List<Sepet> sepList = Session["sepetListesi"] as List<Sepet>;
+                                    count = sepList.Count;
+                                }
+                            }
+                            <i class="fas fa-shopping-bag"></i>&nbsp;<span id="sepetSayi" class="badge badge-pill badge-info">@count</span>
+                        </a>
                         </li>
-                        <li><a href="./product-page.html">About</a></li>
-                        <li><a href="./check-out.html">Blog</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
                     </ul>
-                </nav>
+                    
+
+                </div>
+
+
+                <!--KATEGORİ PARTİAL VIEW GELECEK-->
+                @Html.Action("_CategoryList", "Home")
             </div>
         </div>
     </header>
@@ -106,7 +123,8 @@
     </div>
     <!-- Header Info End -->
     <!-- Header End -->
- 
+
+
     @RenderBody()
 
     <!-- Footer Section Begin -->
@@ -201,7 +219,7 @@
     </footer>
     <!-- Footer Section End -->
     <!-- Js Plugins -->
-    
+
     <script src="~/UIScripts/jquery-3.3.1.min.js"></script>
     <script src="~/UIScripts/bootstrap.min.js"></script>
     <script src="~/UIScripts/jquery.magnific-popup.min.js"></script>
@@ -210,6 +228,31 @@
     <script src="~/UIScripts/jquery.nice-select.min.js"></script>
     <script src="~/UIScripts/mixitup.min.js"></script>
     <script src="~/UIScripts/main.js"></script>
+    @RenderSection("scriptlerim", false)
+    <script>
+        $('.addtoBag').on('click', function () {
+
+            var urunId = $(this).attr("data-productID");
+
+            if (urunId != "") {
+                $.ajax({
+
+                    url: "/Cart/AddToCart/" + urunId,
+                    type: "post",
+                    success: function (result) {
+                        $('#sepetSayi').html(result.length)
+                    }
+
+
+
+                })
+            }
+
+        })
+
+
+
+    </script>
 </body>
 
 </html>

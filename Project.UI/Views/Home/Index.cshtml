@@ -5,19 +5,27 @@
 }
 @model List<Product>
 
+@Html.Action("HomePageSlider", "Home")
+
 <div class="container mt-2">
     <div class="row">
 
         @foreach (var item in Model)
         {
-            <div class="col-sm-4">
-                <div class="card">
-                    <img class="card-img-top" src="@item.ImagePath" alt="Card image" style="width:100%">
+            <div class="col-sm-4 mb-2">
+                <div class="card" style="height:610px!important">
+                    <img class="card-img-top" src="@item.ImagePath" alt="Card image" style="width:100%;height:300px;object-fit:contain">
                     <div class="card-body">
-                        <h4 class="card-title">@item.Name</h4>
-                        <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                        <label>@item.UnitPrice</label>
-                        <a href="#" class="btn btn-primary">Sepete Ekle</a>
+                        <h4 style="height:150px;" class="card-title">@kisalt(item.Name)</h4>
+                        <p style="height:60px;" class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
+                       
+                        <div style="height:70px;">
+                            <span>@item.UnitPrice TL</span>
+                            <a  href="javascript:void(0)" class="float-right btn btn-primary addtoBag" data-productID="@item.ID">Sepete Ekle</a>
+                        </div>
+
+
+
                     </div>
                 </div>
             </div>
@@ -27,4 +35,20 @@
 
 
 </div>
+
+
+@helper  kisalt(string metin)
+
+{
+    if (metin.Length > 50)
+    {
+        string str = metin.Substring(0, 50);
+        <label>@str</label>
+    }
+    else
+    {
+        <label>@metin</label>
+    }
+}
+
 

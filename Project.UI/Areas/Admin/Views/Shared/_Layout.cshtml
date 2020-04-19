@@ -168,7 +168,7 @@
                 $('#pwdInfo').html('Şifre boş geçilemez')
             }
 
-            var url = "@ViewBag.ReturnUrl";
+            var rtnUrl = "@ViewBag.ReturnUrl";
            
 
             if (kullaniciAdi != "" && sifre != "") {
@@ -176,7 +176,7 @@
 
                     url: '/Admin/Kullanici/Signin',
                     type: 'post',
-                    data: { username: kullaniciAdi,password:sifre,ReturnUrl:url },
+                    data: { username: kullaniciAdi, password: sifre},
                     success: function (sonuc) {
                         
                         if (sonuc.islemSonuc) {
@@ -193,9 +193,9 @@
                             </ul>`)
                            
                         
-                            if (url != "") {
+                            if (rtnUrl != "") {
                                 debugger
-                                window.location.href = url;
+                                window.location.href = rtnUrl;
                             }
                             else {
                                 //$('#girisModal').modal('close')

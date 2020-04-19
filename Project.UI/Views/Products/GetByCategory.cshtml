@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "GetByCategory";
+    Layout = "~/Views/Shared/_Sablonum.cshtml";
+}
+@model List<Product>
+@if (Model.Count > 0)
+{
+    <section class="page-add">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="page-breadcrumb">
+
+                        <h2>@Model[0].SubCategory.Name<span>.</span></h2>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-4">
+                    <a href="/Products/GetByProduct/@item.ID">
+
+                        <div class="card single-product-item">
+                            <figure>
+                                <img height="300;" width="100%" style="object-fit:contain" src="@item.ImagePath" alt="">
+                                <div class="p-status sale">sale</div>
+                            </figure>
+                            <div class="product-text">
+                                <a href="#">
+                                    <h6>@item.Name</h6>
+                                </a>
+                                <p>@item.UnitPrice TL</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+
+}
+
+else
+{
+    <div class="alert alert-danger mt-4 mb-4 text-center">Seçtiğiniz kategoriye ait ürün bulunmamaktadır.</div>
+}
+
+@section scriptlerim{
+
+    <script>
+        $('.single-product-item').hover(function () {
+            $(this).addClass('shadow-lg');
+        })
+
+        $('.single-product-item').mouseleave(function () {
+            $(this).removeClass("shadow-lg");
+        })
+
+        
+    </script>
+}
+

@@ -96,11 +96,15 @@ textarea:focus {
 	outline: none;
 }
 
+.nav li a {
+	color: black;
+}
+
 a:hover,
 a:focus {
 	text-decoration: none;
 	outline: none;
-	color: #fff;
+	color: darkorange;
 }
 
 ul,
@@ -344,7 +348,7 @@ ol {
 
 .inner-header .main-menu ul li {
 	display: inline-block;
-	margin-left: 60px;
+	margin-left: 20px;
 	position: relative;
 }
 

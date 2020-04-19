@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Sablonum.cshtml";
+}
+@model List<Sepet>
+
+    <div class="container mt-4 mb-4">
+        @if (Model.Count > 0)
+        {
+            <div class="row">
+                <div class="col-sm-9">
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th>Ürün Adı</th>
+                                <th>Fiyatı</th>
+                                <th>Adet</th>
+                                <th>Ürün Görseli</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ 
+                                decimal toplamFiyat = 0;
+                            }
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.UrunAdi</td>
+                                    <td>@item.Fiyati</td>
+                                    <td>@item.Adet</td>
+                                    <td>
+                                        <img height="50" src="@item.ImagePath" />
+                                    </td>
+                                    <td>
+                                        <a data-toggle="tooltip" title="Sepetten Sil" href="#"><i class="fas fa-remove"></i></a>
+                                    </td>
+                                </tr>
+                                toplamFiyat += item.Adet * item.Fiyati;
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+
+
+                <div class="col-sm-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Genel Toplam Fiyat</h4>
+                        </div>
+                        <div class="card-body">
+                            Toplam Fiyat : <span>@string.Format("{0:c}", toplamFiyat) </span>
+                        </div>
+                        <div class="card-footer"><a class="btn btn-info" href="/Order/Add">Siparişi Tamamla</a></div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        }
+
+        else
+        {
+            <div class="alert alert-danger text-center">Sepetinizde ürün bulunmamaktadır. Anasayfaya dönmek için <a href="/Home/Index"> tıklayınız.</a></div>
+        }
+
+    </div>

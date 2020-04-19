@@ -33,6 +33,7 @@
     $('.set-bg').each(function () {
         var bg = $(this).data('setbg');
         $(this).css('background-image', 'url(' + bg + ')');
+        $(this).css('background-size','contain')
     });
 
     /*------------------
@@ -69,7 +70,7 @@
         dots: true,
         animateOut: 'fadeOut',
         animateIn: 'fadeIn',
-        navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+        navText: ['<i class="fas fa-angle-left"></i>', '<i class="fas fa-angle-right"></i>'],
         smartSpeed: 1200,
         autoplayHoverPause: true,
         mouseDrag: false,
