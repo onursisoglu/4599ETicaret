@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Project.Service.Option;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,8 +10,11 @@ namespace Project.UI.Areas.Admin.Controllers
     public class HomeController : Controller
     {
         // GET: Admin/Home
+        OrderService siparisService = new OrderService();
         public ActionResult Index()
         {
+            int count = siparisService.GetDefault(x => x.Confirmed == false && x.IsActive).Count;
+            ViewBag.SipariSayisi = count;
             return View();
         }
 

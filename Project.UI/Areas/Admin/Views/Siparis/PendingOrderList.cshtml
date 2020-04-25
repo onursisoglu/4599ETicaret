@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "PendingOrderList";
+}
+@model List<Order>
+
+<div class="col-sm-12">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Sipariş Kodu</th>
+                <th>Müşteri Adı</th>
+                <th>Müşteri Kullanıcı Adı</th>
+                <th>Eklenme Tarihi</th>
+                <th colspan="2">Sipariş Detasyı</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.AppUser.Name</td>
+                <td>@item.AppUser.UserName</td>
+                <td>@item.CreatedDate</td>
+                <td>
+                    <a href="/Admin/Siparis/Details/@item.ID">Detay</a>
+                </td>
+            </tr>
+            }
+
+        </tbody>
+        
+    </table>
+</div>
+

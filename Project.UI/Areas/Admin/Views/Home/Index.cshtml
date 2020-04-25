@@ -3,8 +3,35 @@
     ViewBag.Title = "Index";
 }
 
-<h2></h2>
+    <div class="container">
+        <div class="row" style="margin:20px 0 20px 0">
+            <div class="col-sm-6 bg-info">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <i class="fas fa-shopping-cart fa-5x"></i>
+                            </div>
+                            <div class="col-sm-9 text-right">
+                                <h2>@ViewBag.SipariSayisi</h2>
+                                <div>Onay bekleyen sipariş</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/Admin/Siparis/PendingOrderList">
+                        <div class="card-footer">
+                            <span class="pull-left">Siparişleri Görüntüle</span>
+                            <span class="pull-right">
+                                <i class="fas fa-arrow-circle-right"></i>
+                            </span>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </div>
 
 
 
 
+    </div>

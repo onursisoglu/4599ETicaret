@@ -160,6 +160,8 @@
     <Content Include="Areas\Admin\Views\Home\NoAuthorize.cshtml" />
     <Content Include="Areas\Admin\Views\Kullanici\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Kullanici\Duzenle.cshtml" />
+    <Content Include="Areas\Admin\Views\Siparis\PendingOrderList.cshtml" />
+    <Content Include="Areas\Admin\Views\Siparis\Details.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -193,6 +195,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\KategoriController.cs" />
     <Compile Include="Areas\Admin\Controllers\KullaniciController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SiparisController.cs" />
     <Compile Include="Areas\Admin\Controllers\UrunController.cs" />
     <Compile Include="Areas\Admin\Models\ProductViewModel.cs" />
     <Compile Include="Controllers\AppUserController.cs" />
